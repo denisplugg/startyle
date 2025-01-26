@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}
+СНГ артисты
+{% endblock %}
+
+{% block content %}
+<main class="content">
+    <div class="card">
+        <div class="celebrity">
+            <img src="{{ url_for('static', filename='img/law.png') }}" alt="Zendaya" class="celebrity-image">
+            <p class="celebrity-name">Zendaya</p>
+        </div>
+        <div class="outfits">
+            <div class="outfit-item">
+                <img src="{{ url_for('static', filename='img/law.png') }}" alt="Valentino Dress" class="outfit-image">
+                <p>Valentino Dress</p>
+                <p class="price">$3200</p>
+            </div>
+            <div class="outfit-item">
+                <img src="{{ url_for('static', filename='img/law.png') }}" alt="Prada Shoes" class="outfit-image">
+                <p>Prada Shoes</p>
+                <p class="price">$1200</p>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

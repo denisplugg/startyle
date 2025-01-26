@@ -1,0 +1,31 @@
+{% extends  "base.html" %}
+
+
+{% block  title %}
+Главная страница
+{% endblock %}
+
+{% block  content %}
+<main class="content">
+    <div class="card">
+      <div class="celebrity">
+        <img src="{{ url_for('static', filename='img/123.png') }}" alt="Zendaya">
+        <p class="celebrity-name">Zendaya</p>
+      </div>
+      <div class="outfits">
+        <div class="outfit-item">
+          <img src="{{ url_for('static', filename='img/law.png') }}" alt="Valentino Dress">
+          <p>Valentino Dress</p>
+          <p class="price">$3200</p>
+        </div>
+        <div class="outfit-item">
+          <img src="{{ url_for('static', filename='img/law.png') }}" alt="Prada Shoes">
+          <p>Prada Shoes</p>
+          <p class="price">$1200</p>
+        </div>
+      </div>
+    </div>
+      </div>
+    </div>
+  </main>
+{% endblock %}
