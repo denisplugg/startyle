@@ -1,16 +1,37 @@
 from flask import Flask, render_template, request, redirect, flash, session
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
-from database import db, Users
+from database import db
+from USERSdatabase import Users
+from CARDdatabase import Celebrities, Outfits
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///databases.db'
 app.secret_key = 'fhggk90@#1041,v;gh432!?'
 db.init_app(app)
 
 
 with app.app_context():
     db.create_all()
+
+
+def add_celebrity(celebrity_name, celebrity_img):
+    new_celebrity = Celebrities(celebrity_name=celebrity_name, celebrity_img=celebrity_img)
+
+    try:
+        db.session.add(new_celebrity)
+        db.session.commit()
+    except:
+        db.session.rollback()
+
+def add_outfit(name, price, image_url, celebrity_id):
+    new_outfit = Outfits(name=name, price=price, image_url=image_url, celebrity_id=celebrity_id)
+
+    try:
+        db.session.add(new_outfit)
+        db.session.commit()
+    except:
+        db.session.rollback()      
 
 
 @app.route("/base")
