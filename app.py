@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from database import db
 from USERSdatabase import Users
-from CARDdatabase import Celebrities, Outfits
+from CARDdatabase import ForeignCelebrities, ForeignOutfits, CISCelebrities, CISOutfits, RuBrands, RuOutfits
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///databases.db'
@@ -15,29 +15,87 @@ with app.app_context():
     db.create_all()
 
 
-def add_celebrity(celebrity_name, celebrity_img):
-    new_celebrity = Celebrities(celebrity_name=celebrity_name, celebrity_img=celebrity_img)
+def add_foreign_celebrity(celebrity_name, celebrity_img, unique_id):
+    
+    new_foreign_celebrity = ForeignCelebrities(celebrity_name=celebrity_name, celebrity_img=celebrity_img, unique_id=unique_id)
 
     try:
-        db.session.add(new_celebrity)
+        db.session.add(new_foreign_celebrity)
         db.session.commit()
-    except:
+        print(f'Foreign Celebrity {celebrity_name} added successfully.')
+    except Exception as e:
         db.session.rollback()
+        print(f'Error adding foreign celebrity: {str(e)}') 
 
-def add_outfit(name, price, image_url, celebrity_id):
-    new_outfit = Outfits(name=name, price=price, image_url=image_url, celebrity_id=celebrity_id)
+
+def add_foreign_outfit(outfit_item, price, item_img, celebrity_id):
+    new_foreign_outfit = ForeignOutfits(outfit_item=outfit_item, price=price, item_img=item_img, celebrity_id=celebrity_id)
 
     try:
-        db.session.add(new_outfit)
+        db.session.add(new_foreign_outfit)
         db.session.commit()
-    except:
-        db.session.rollback()      
+    except Exception as e:
+        db.session.rollback()  
+        print(f'Error adding foreign outfit: {str(e)}') 
+
+
+def add_cis_celebrity(celebrity_name, celebrity_img):
+    new_cis_celebrity = CISCelebrities(celebrity_name=celebrity_name, celebrity_img=celebrity_img)
+
+    try:
+        db.session.add(new_cis_celebrity)
+        db.session.commit()
+        print(f'CIS Celebrity {celebrity_name} added successfully.')
+    except Exception as e:
+        db.session.rollback()
+        print(f'Error adding cis celebrity: {str(e)}') 
+
+
+def add_cis_outfit(outfit_item, price, item_img, celebrity_id):
+    new_cis_outfit = CISOutfits(outfit_item=outfit_item, price=price, item_img=item_img, celebrity_id=celebrity_id)
+
+    try:
+        db.session.add(new_cis_outfit)
+        db.session.commit()
+        print(f'CIS Outfit {outfit_item} added successfully.')
+    except Exception as e:
+        db.session.rollback()
+        print(f'Error adding cis outfit: {str(e)}')
+
+
+def add_ru_brand(brand_name, brand_logo):
+    new_ru_brand = RuBrands(brand_name=brand_name, brand_logo=brand_logo)
+
+    try:
+        db.session.add(new_ru_brand)
+        db.session.commit()
+        print(f'RU Brand {brand_name} added successfully.')
+    except Exception as e:
+        db.session.rollback()
+        print(f'Error adding ru brand: {str(e)}')
+
+def add_ru_outfit(outfit_item, price, item_img, brand_id):
+    new_ru_outfit = RuOutfits(outfit_item=outfit_item, price=price, item_img=item_img, brand_id=brand_id)
+
+    try:
+        db.session.add(new_ru_outfit)
+        db.session.commit()
+        print(f'RU Outfit {outfit_item} added successfully.')
+    except Exception as e:
+        db.session.rollback()
+        print(f'Error adding ru outfit: {str(e)}')
 
 
 @app.route("/base")
-@app.route("/")
+@app.route("/", methods=['GET'])
 def index():
-    return render_template("index.html")
+    fcelebrities = ForeignCelebrities.query.all()
+    foutfits = ForeignOutfits.query.all()
+
+    search_query = request.args.get('query', '')
+    if search_query:
+        fcelebrities = ForeignCelebrities.query.filter(ForeignCelebrities.celebrity_name.ilike(f'%{search_query}%')).all()
+    return render_template('index.html', fcelebrities=fcelebrities, foutfits=foutfits, search_query=search_query)
 
 @app.route("/WesternStars")
 def Western_Stars():
@@ -72,9 +130,9 @@ def register():
             db.session.commit()
             flash('Регистрация успешна! Пожалуйста, войдите.')
             return redirect('/login')
-        except:
+        except Exception as e:
             db.session.rollback()
-            flash('Ошибка регистрации')
+            flash('Ошибка регистрации: {}'.format(str(e)))
 
     return render_template('register.html')
 
@@ -103,5 +161,6 @@ def profile():
     return redirect('/login')
 
 
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True) 

@@ -36,9 +36,10 @@
     </div>
   
     <div class="search-container">
-      <input type="text" class="search-input" placeholder="Поиск...">
-      <button class="search-button">Искать</button>
-    </div>
+      <form method="GET" action="{{ url_for('index') }}">
+        <input type="text" name="query" class="search-input" placeholder="Поиск..." value="{{ request.args.get('query', '') }}">
+        <button type="submit" class="search-button">Искать</button>
+      </form>
   </nav>
 
     {% block content %}{% endblock %}

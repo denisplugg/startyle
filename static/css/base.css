@@ -177,14 +177,15 @@ header a {
 
 /* Карточки */
 .card {
-  background: #fff;
+  background: linear-gradient(to bottom right, #ffffff, #f9f9f9);
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  padding: 20px;
   display: flex;
   gap: 20px;
   align-items: flex-start;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .celebrity {
@@ -193,15 +194,21 @@ header a {
 }
 
 .celebrity img {
-  width: 300px;
+  width: 330px;
   height: auto;
   border-radius: 10px;
+  transition: transform 0.3s;
+}
+
+.celebrity img:hover {
+  transform: scale(1.05);
 }
 
 .celebrity-name {
   margin-top: 10px;
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   font-weight: bold;
+  color: #333; 
 }
 
 .outfits {
@@ -216,6 +223,7 @@ header a {
   flex-direction: column;
   align-items: center;
   text-align: center;
+  transition: transform 0.2s;
 }
 
 .outfit-item img {
@@ -226,13 +234,17 @@ header a {
 
 .outfit-item p {
   margin: 5px 0;
-  font-size: 0.9rem;
+  font-size: 1rem;
+  color: #555;
 }
 
 .price {
   font-weight: bold;
-  color: #ff6f61;
+  color:#333;
+  font-size: 1.1rem;
 }
+
+
 
 /* Футер */
 footer {
