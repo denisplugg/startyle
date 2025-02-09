@@ -1,10 +1,102 @@
-{% extends  "base.html" %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Личный кабинет</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+</head>
+<body>
+<header class="header">
+    <h1><a href="{{ url_for('index') }}">STAR STYLE</a></h1>
+  </header>
+
+  <nav class="nav">
+    <div class="menu-toggle">
+      ☰
+    </div>
+
+    <div class="sidebar-menu">
+      <h2>Меню</h2>
+      <ul class="menu-items">
+        <li><a href="{{ url_for('index') }}">Главная</a></li>
+        <li><a href="{{ url_for('profile') }}">Личный кабинет</a></li>
+        <li><a href="{{ url_for('Stars') }}">Знаменитости</a></li>
+        <li><a href="#">О нас</a></li>
+        <li><a href="#">Контакты</a></li>
+      </ul>
+    </div>
+
+    <div class="text">
+      <a href="{{ url_for('Western_Stars') }}">Западные Звезды</a>
+      <a href="{{ url_for('Ru_Streetwear') }}">Русские Бренды</a>
+      <a href="{{ url_for('CIS_Stars') }}">СНГ Звезды</a>
+    </div>
+
+    <div class="search-container">
+      <form method="GET" action="{{ url_for('index') }}">
+        <input type="text" name="query" class="search-input" placeholder="Поиск..." value="{{ request.args.get('query', '') }}">
+        <button type="submit" class="search-button">Искать</button>
+      </form>
+  </nav>
+  <div class="tabs-container">
+    <input type="radio" name="tabs" id="tab-settings" checked>
+    <input type="radio" name="tabs" id="tab-favorites">
+    <input type="radio" name="tabs" id="tab-tracked">
+
+    <div class="container">
+      <aside class="sidebar">
+        <div class="user-card">
+          <img src="user-photo.jpg" alt="Фото пользователя" class="user-photo">
+          <h2 class="user-name">Имя Пользователя</h2>
+        </div>
+        <div class="tabs">
+          <label for="tab-settings" class="nav-btn">Настройки</label>
+          <label for="tab-favorites" class="nav-btn">Избранные посты</label>
+          <label for="tab-tracked" class="nav-btn">Отслеживаемые звезды</label>
+        </div>
+      </aside>
+
+      <section class="content">
+        <div class="tab-content" id="content-settings">
+          <h2>Настройки</h2>
+          <p>Здесь вы можете изменить личные данные, пароль и другие настройки аккаунта.</p>
+        </div>
+
+        <div class="tab-content" id="content-favorites">
+          <h2>Избранные посты</h2>
+          <div class="post-list">
+            <div class="post-card">
+              <img src="post1.jpg" alt="Пост 1">
+              <h3>Заголовок поста 1</h3>
+              <p>Краткое описание поста...</p>
+              <a href="#" class="read-more">Читать далее</a>
+            </div>
+            <div class="post-card">
+              <img src="post2.jpg" alt="Пост 2">
+              <h3>Заголовок поста 2</h3>
+              <p>Краткое описание поста...</p>
+              <a href="#" class="read-more">Читать далее</a>
+            </div>
+          </div>
+        </div>
 
 
-{% block  title %}
-Главная страница
-{% endblock %}
-
-{% block  content %}
-
-{% endblock %}
+        <div class="tab-content" id="content-tracked">
+          <h2>Отслеживаемые звезды</h2>
+          <div class="celebrity-list">
+            <div class="celebrity-card">
+              <img src="celebrity1.jpg" alt="Звезда 1" class="celebrity-image">
+              <div class="celebrity-name">Звезда 1</div>
+            </div>
+            <div class="celebrity-card">
+              <img src="celebrity2.jpg" alt="Звезда 2" class="celebrity-image">
+              <div class="celebrity-name">Звезда 2</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</body>
+</html> 

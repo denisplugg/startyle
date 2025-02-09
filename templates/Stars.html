@@ -9,14 +9,12 @@
 <body>
     <div class="container">
         <div class="celebrity-list">
+            {% for star in allstars %}
             <div class="celebrity-card">
-                <img src="{{ url_for('static', filename='img/123.png') }}" alt="Zendaya" class="celebrity-image">
-                <p class="celebrity-name">Zendaya</p>
+                <img src="{{ url_for('static', filename=star.image_url) }}" alt="{{ star.name }}" class="celebrity-image">
+                <p class="celebrity-name">{{ star.name }}</p>
             </div>
-            <div class="celebrity-card">
-                <img src="{{ url_for('static', filename='img/another-celebrity.png') }}" alt="Другой знаменитость" class="celebrity-image">
-                <p class="celebrity-name">Другой знаменитость</p>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </body>
