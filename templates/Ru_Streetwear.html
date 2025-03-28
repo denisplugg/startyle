@@ -1,9 +1,67 @@
-{% extends  "base.html" %}
+{% extends "base.html" %}
 
-{% block  title %}
-Русский Стритвир
+{% block title %}Знаменитости | Star Style{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/card.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 {% endblock %}
 
-{% block  content %}
-<h1>Русский Стритвир</h1>
+{% block content %}
+<div class="card-container">
+  <div class="celebrity-card">
+    <!-- Шапка карточки -->
+    <div class="card-header">
+      <span class="celebrity-name">Roké9</span>
+      <span class="post-date">March 27, 2020</span>
+    </div>
+    
+    <!-- Основное содержимое -->
+    <div class="card-content">
+      <!-- Фото знаменитости -->
+      <div class="celebrity-photo">
+        <img src="{{ url_for('static', filename='images/celebrities/roke9.jpg') }}" alt="Roké9">
+      </div>
+      
+      <!-- Блок с одеждой -->
+      <div class="clothing-block">
+        <!-- Первый предмет -->
+        <div class="clothing-item">
+          <div class="item-info">
+            <span class="brand">Givenchy</span>
+            <span class="item-name">Dark Grey Square Units...</span>
+            <span class="price">8490-8200</span>
+          </div>
+        </div>
+        
+        <!-- Второй предмет -->
+        <div class="clothing-item">
+          <div class="item-info">
+            <span class="brand">Saint Laurent</span>
+            <span class="item-name">PW15 Rougeon Pvt Court</span>
+            <span class="price">51500</span>
+          </div>
+        </div>
+        
+        <!-- Третий предмет -->
+        <div class="clothing-item">
+          <div class="item-info">
+            <span class="brand">Roker</span>
+            <span class="item-name">Dry Rose 40 Gold Oh...</span>
+            <span class="price">554000</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Подвал карточки -->
+    <div class="card-footer">
+      <span class="signature">Ouvais</span>
+      <label class="favorite-label">
+        <input type="checkbox" class="favorite-checkbox">
+        <i class="far fa-heart"></i>
+      </label>
+    </div>
+  </div>
+</div>
 {% endblock %}

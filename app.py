@@ -21,11 +21,11 @@ with app.app_context():
 def index():
     fcelebrities = ForeignCelebrities.query.all()
     foutfits = ForeignOutfits.query.all()
-
-    search_query = request.args.get('query', '')
-    if search_query:
-        fcelebrities = ForeignCelebrities.query.filter(ForeignCelebrities.celebrity_name.ilike(f'%{search_query}%')).all()
-    return render_template('index.html', fcelebrities=fcelebrities, foutfits=foutfits, search_query=search_query)
+    ciscelebrities = CISCelebrities.query.all()
+    cisoutfits = CISOutfits.query.all()
+    rubrands = RuBrands.query.all()
+    ruoutfits = RuOutfits.query.all()
+    return render_template("index.html", fcelebrities=fcelebrities, foutfits=foutfits, ciscelebrities=ciscelebrities, cisoutfits=cisoutfits, rubrands=rubrands, ruoutfits=ruoutfits)
 
 @app.route("/WesternStars")
 def Western_Stars():
@@ -43,6 +43,11 @@ def CIS_Stars():
 def Stars():
     allstars = AllStars.query.all()
     return render_template("Stars.html",allstars=allstars)
+
+@app.route('/Stars_description')
+def Stars_description():
+    allstars = AllStars.query.all()
+    return render_template('Stars_description.html', allstars=allstars)
     
 
 @app.route('/register', methods=['GET', 'POST'])
