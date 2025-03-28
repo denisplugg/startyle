@@ -87,4 +87,4 @@ def add_star(name, description, image_url):
 
 if __name__ == '__main__':
     with app.app_context():
-        add_foreign_celebrity('Central Cee','static/img/Western_Stars/CentralCee1/centralcee1.jpeg',1)
+        add_foreign_outfit()

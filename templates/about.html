@@ -1,0 +1,43 @@
+{% extends  "base.html" %}
+
+{% block  title %}
+Знаменитости
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+{% endblock %}
+
+{% block  content %}
+
+<header class="header1">
+    <h1>О нас</h1>
+    <p>Описание</p>
+</header>
+
+<div class="about">
+    <div class="about-content">
+        <h2>Кто мы?</h2>
+        <p>Мы - команда энтузиастов, объединённых любовью к технологиям и дизайну. Наша цель – разрабатывать современные и удобные цифровые продукты, которые делают жизнь проще.</p>
+    </div>
+</div>
+
+<div class="team">
+    <h2>Наша команда</h2>
+    <div class="team-container">
+        <div class="team-member">
+            <h3>Денис А</h3>
+            <p>Основатель & Разработчик</p>
+        </div>
+        <div class="team-member">
+            <h3>Владислав</h3>
+            <p>Дизайнер UX/UI</p>
+        </div>
+        <div class="team-member">
+            <h3>Денис Г</h3>
+            <p>Frontend-разработчик</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

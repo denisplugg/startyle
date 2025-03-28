@@ -333,3 +333,24 @@ body {
   font-weight: bold;
   text-align: center;
 }
+
+/* Футер */
+footer {
+  background-color: #292929;
+  color: #fff;
+  text-align: center;
+  padding: 15px 0;
+  margin-top: 20px;
+}
+
+footer p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.menu a {
+    padding: 0px;
+    text-decoration: none;
+    color: black;
+    transition-duration: 1s;
+}

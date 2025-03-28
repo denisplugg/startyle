@@ -9,58 +9,61 @@
 
 {% block content %}
 <div class="card-container">
-  <div class="celebrity-card">
-    <!-- Шапка карточки -->
-    <div class="card-header">
-      <span class="celebrity-name">Roké9</span>
-      <span class="post-date">March 27, 2020</span>
-    </div>
-    
-    <!-- Основное содержимое -->
+  <div class="fashion-card">
     <div class="card-content">
       <!-- Фото знаменитости -->
-      <div class="celebrity-photo">
-        <img src="{{ url_for('static', filename='images/celebrities/roke9.jpg') }}" alt="Roké9">
+      <div class="celebrity-photo-section">
+        <div class="photo-placeholder" style="background-image: url('https://poizon.ru/storage/pro-img/origin-img/20230327/57db33f7dc594815b50849a8b1368794.jpg')"></div>
       </div>
       
-      <!-- Блок с одеждой -->
-      <div class="clothing-block">
-        <!-- Первый предмет -->
-        <div class="clothing-item">
-          <div class="item-info">
-            <span class="brand">Givenchy</span>
-            <span class="item-name">Dark Grey Square Units...</span>
-            <span class="price">8490-8200</span>
+      <!-- Вещи с фото сверху -->
+      <div class="items-section">
+        <div class="items-row">
+          <!-- Вещь 1 -->
+          <div class="fashion-item">
+            <div class="item-photo" style="background-image: url('https://poizon.ru/storage/pro-img/origin-img/20230327/57db33f7dc594815b50849a8b1368794.jpg')"></div>
+            <div class="item-details">
+              <h3 class="brand">Givenchy</h3>
+              <p class="item-name">Dark Grey Square Ulla...</p>
+              <div class="prices">
+                <span class="old-price">5999</span>
+                <span class="current-price">3300</span>
+              </div>
+            </div>
           </div>
-        </div>
-        
-        <!-- Второй предмет -->
-        <div class="clothing-item">
-          <div class="item-info">
-            <span class="brand">Saint Laurent</span>
-            <span class="item-name">PW15 Rougeon Pvt Court</span>
-            <span class="price">51500</span>
+          
+          <!-- Вещь 2 -->
+          <div class="fashion-item">
+            <div class="item-photo" style="background-image: url('https://source.unsplash.com/random/300x300/?fashion,hat')"></div>
+            <div class="item-details">
+              <h3 class="brand">Balenciaga</h3>
+              <p class="item-name">AVY18 primary helmet...</p>
+              <div class="price">5166</div>
+            </div>
           </div>
-        </div>
-        
-        <!-- Третий предмет -->
-        <div class="clothing-item">
-          <div class="item-info">
-            <span class="brand">Roker</span>
-            <span class="item-name">Dry Rose 40 Gold Oh...</span>
-            <span class="price">554000</span>
+          
+          <!-- Вещь 3 -->
+          <div class="fashion-item">
+            <div class="item-photo" style="background-image: url('https://source.unsplash.com/random/300x300/?fashion,sneakers')"></div>
+            <div class="item-details">
+              <h3 class="brand">Nike</h3>
+              <p class="item-name">Air For</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
     
-    <!-- Подвал карточки -->
-    <div class="card-footer">
-      <span class="signature">Ouvais</span>
-      <label class="favorite-label">
-        <input type="checkbox" class="favorite-checkbox">
+    <!-- Подвал -->
+    <div class="footer">
+      <span class="name">Rob49</span>
+      <button class="like-btn" onclick="this.classList.toggle('active')">
         <i class="far fa-heart"></i>
-      </label>
+      </button>
+      <div class="total-price">
+        <span>Total:</span>
+        <span class="amount">$1618</span>
+      </div>
     </div>
   </div>
 </div>

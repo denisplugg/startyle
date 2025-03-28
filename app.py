@@ -96,6 +96,9 @@ def profile():
         return render_template('profile.html', user=user)
     return redirect('/login')
 
+@app.route("/about")
+def About():
+    return render_template("about.html")
 
 
 if __name__ == '__main__':
